@@ -52,7 +52,7 @@ input:hover {
   background-color: #fff;
 }
 
-button {
+.button {
   color: #fff;
   background-color: #3E884A;
   border: none;
@@ -84,4 +84,17 @@ button {
 
   .error {
     color: #ff0000;
+  }
+
+  .passwordInputContainer {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+  }
+ 
+  .passwordToggle {
+  border: none;
+  background: none;
+  cursor: pointer;
+  
   }

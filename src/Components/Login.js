@@ -61,7 +61,9 @@ const Login = () => {
         <Link to={'/forgot'} className={styles.linkForgot}>
           Forgot password?
         </Link>
-        <button onClick={handleLogin}>Sign in</button>
+        <button className={styles.button} onClick={handleLogin}>
+          Sign in
+        </button>
         <nav className={styles.navForgot}>
           Not sign up yet?<Link to={'/signup'}> Sign up!</Link>
         </nav>

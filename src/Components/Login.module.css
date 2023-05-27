@@ -1,0 +1,82 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  font-size: 3rem;
+  font-weight: 500;
+  position: relative;
+  margin: 2rem 0 2rem 0;
+}
+
+.title::after{
+  content: '';
+  display: block;
+  width: 1.5rem;
+  height: 1.5rem;
+  background: #3E884A;
+  position: absolute;
+  top: 5px;
+  left: -5px;
+  border-radius: .2rem;
+  z-index: -1;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.label {
+  font-weight: 500;
+  padding-bottom: .25rem;
+}
+
+input {
+  width: 100%;
+  padding-bottom: 1rem;
+  margin-bottom: .5rem;
+  border-radius: .2rem;
+  border: 1px solid #d4d4d4;
+  transition: all .3s;
+  background-color: rgb(250, 250, 250);
+}
+
+input:hover {
+  box-shadow: 0 0 3px 3px #3E884A;
+  background-color: #fff;
+}
+
+button {
+  color: #fff;
+  background-color: #3E884A;
+  border: none;
+  border-radius: .2rem;
+  position: relative;
+  font-size: 1rem;
+  font-weight: 300;
+  padding: .5rem 3rem .5rem 3rem;
+  box-shadow: 3px 3px 2px rgba(0,0,0,.25);
+  cursor: pointer;
+  align-self: flex-end;
+  margin: 1rem 0 1rem 0;
+  transition: all .3s;
+}
+
+.linkForgot {
+  align-self: flex-end;
+  text-decoration: underline;
+}
+
+.navForgot {
+  align-self: flex-end;
+  margin-bottom: 1rem;
+}
+
+.navForgot a {
+  text-decoration: underline;
+  }
+

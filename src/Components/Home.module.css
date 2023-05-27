@@ -1,0 +1,73 @@
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  }
+
+  .principalText {
+    width: 70%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .title {
+    font-size: 3rem;
+    font-weight: 500;
+    position: relative;
+    margin: 4rem 0 2rem 0;
+  }
+  
+  .title::after{
+    content: '';
+    display: block;
+    width: 1.5rem;
+    height: 1.5rem;
+    background: #3E884A;
+    position: absolute;
+    top: 5px;
+    left: -5px;
+    border-radius: .2rem;
+    z-index: -1;
+  }
+
+.text {
+  width: 60%;
+  font-size: 1.5rem;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.secondContainer {
+padding: 0 0 0 .25rem;
+position: relative;
+}
+
+.button {
+  color: #fff;
+  background-color: #3E884A;
+  width:max-content;
+  border: none;
+  border-radius: .2rem;
+  position: absolute;
+  bottom: 3rem;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 3rem;
+  padding: 1rem 3rem 1rem 3rem;
+  box-shadow: 3px 3px 2px rgba(0,0,0,.25);
+  cursor: pointer;
+  transition: all .2s;
+  z-index: 1;
+}
+
+.button:hover {
+  border: 3px double rgb(172,213,179);
+}
+
+.secondContainer img {
+  z-index: -100;
+  max-width: 100%;
+}

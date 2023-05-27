@@ -22,9 +22,14 @@ const Header = () => {
         </div>
         <div className={styles.navLinks}>
           {user ? (
-            <Link to={'/myaccount'} className={styles.navLinkText}>
-              {user.displayName}
-            </Link>
+            <>
+              <Link to={'/chat'} className={styles.navLinkText}>
+                Chat
+              </Link>
+              <Link to={'/myaccount'} className={styles.navLinkText}>
+                {user.displayName ? user.displayName : 'My account'}
+              </Link>
+            </>
           ) : (
             <Link to={'/login'} className={styles.navLinkText}>
               Sign in

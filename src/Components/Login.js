@@ -4,24 +4,33 @@ import SignInGoogle from './SignInGoogle';
 import { Link } from 'react-router-dom';
 import { auth } from '../firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 
 const Login = () => {
   const [user] = useAuthState(auth);
-  console.log(user);
-  // const [email, setEmail] = React.useState('');
-  // const [password, setPassword] = React.useState('');
+  const [email, setEmail] = React.useState('');
+  const [password, setPassword] = React.useState('');
+  const [error, setError] = React.useState('');
 
-  const [formState, setFormState] = React.useState({
-    inputEmail: '',
-    inputPassword: '',
-  });
+  React.useEffect(() => {
+    if (user) {
+      window.location.href = '/chat';
+    }
+  }, [user]);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormState((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
+  const handleLogin = (e) => {
+    e.preventDefault();
+    if (email && password) {
+      const auth = getAuth();
+      signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          // const user = userCredential.user;
+          window.location.href = '/chat';
+        })
+        .catch((error) => {
+          setError(error.message);
+        });
+    }
   };
 
   return (
@@ -35,8 +44,8 @@ const Login = () => {
           type="text"
           id="email"
           className={styles.input}
-          value={formState.inputEmail}
-          onChange={handleChange}
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
         />
         <label label="Password:" className={styles.label} htmlFor="password">
           Password:
@@ -45,13 +54,14 @@ const Login = () => {
           type="password"
           id="password"
           className={styles.input}
-          value={formState.inputPassword}
-          onChange={handleChange}
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
         />
+        {error ? <p className={styles.error}>Invalid Credentials</p> : null}
         <Link to={'/forgot'} className={styles.linkForgot}>
           Forgot password?
         </Link>
-        <button>Sign in</button>
+        <button onClick={handleLogin}>Sign in</button>
         <nav className={styles.navForgot}>
           Not sign up yet?<Link to={'/signup'}> Sign up!</Link>
         </nav>

@@ -3,8 +3,10 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Header from './Components/Header';
 import Home from './Components/Home';
 import Login from './Components/Login';
-import MyAccount from './Components/MyAccount';
+import SignUp from './Components/SignUp';
 import styles from './App.module.css';
+import Chat from './Components/Chat';
+import MyAccount from './Components/MyAccount';
 
 // import { auth } from './firebase';
 // import { useAuthState } from 'react-firebase-hooks/auth';
@@ -20,7 +22,9 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/login/*" element={<Login />} />
+            <Route path="/chat/*" element={<Chat />} />
             <Route path="/myaccount/*" element={<MyAccount />} />
+            <Route path="/signup/*" element={<SignUp />} />
           </Routes>
         </main>
       </BrowserRouter>

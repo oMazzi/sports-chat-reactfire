@@ -37,12 +37,14 @@
 
 input {
   width: 100%;
-  padding-bottom: 1rem;
   margin-bottom: .5rem;
   border-radius: .2rem;
   border: 1px solid #d4d4d4;
   transition: all .3s;
   background-color: rgb(250, 250, 250);
+  font-size: 1rem;
+  vertical-align: middle;
+  line-height: 2rem;
 }
 
 input:hover {
@@ -80,3 +82,6 @@ button {
   text-decoration: underline;
   }
 
+  .error {
+    color: #ff0000;
+  }

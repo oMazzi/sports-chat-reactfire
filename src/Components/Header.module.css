@@ -80,7 +80,7 @@
   }
 }
 
-@media (max-width: 480px)  {
+@media (max-width: 600px)  {
   .navContainer {
     display: grid;
     grid-template-columns: 25% 75%;

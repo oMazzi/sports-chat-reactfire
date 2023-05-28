@@ -6,7 +6,6 @@ import Login from './Components/Login';
 import SignUp from './Components/SignUp';
 import styles from './App.module.css';
 import Chat from './Components/Chat';
-import MyAccount from './Components/MyAccount';
 
 // import { auth } from './firebase';
 // import { useAuthState } from 'react-firebase-hooks/auth';
@@ -23,7 +22,6 @@ const App = () => {
             <Route path="/sports-chat/" element={<Home />} />
             <Route path="/sports-chat/login/*" element={<Login />} />
             <Route path="/sports-chat/chat/*" element={<Chat />} />
-            <Route path="/sports-chat/myaccount/*" element={<MyAccount />} />
             <Route path="/sports-chat/signup/*" element={<SignUp />} />
           </Routes>
         </main>

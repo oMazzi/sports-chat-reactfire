@@ -5,7 +5,7 @@ import { auth } from '../firebase';
 const LogOut = () => {
   const handleClick = () => {
     auth.signOut();
-    window.location.href = '/login';
+    window.location.href = '/sports-chat/login';
   };
 
   return (

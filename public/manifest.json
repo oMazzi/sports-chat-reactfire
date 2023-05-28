@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Sports Chat",
+  "name": "Sports chat - the right place to talk about sports",
   "icons": [
     {
       "src": "favicon.ico",

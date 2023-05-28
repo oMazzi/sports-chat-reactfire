@@ -14,7 +14,7 @@ const Login = () => {
 
   React.useEffect(() => {
     if (user) {
-      window.location.href = '/chat';
+      window.location.href = '/sports-chat/chat';
     }
   }, [user]);
 
@@ -25,7 +25,7 @@ const Login = () => {
       signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
           // const user = userCredential.user;
-          window.location.href = '/chat';
+          window.location.href = '/sports-chat/chat';
         })
         .catch((error) => {
           setError(error.message);

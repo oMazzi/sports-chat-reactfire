@@ -41,7 +41,7 @@ const Chat = () => {
   React.useEffect(() => {
     const timeout = setTimeout(() => {
       if (!user) {
-        window.location.href = '/login';
+        window.location.href = '/sports-chat/login';
       }
     }, 2000);
     return () => clearTimeout(timeout);
@@ -132,7 +132,7 @@ const Chat = () => {
                 return (
                   <Link
                     onClick={() => handleSportClick(title.id)}
-                    to={`/chat/${title.title}`}
+                    to={`/sports-chat/chat/${title.title}`}
                     key={title.title}
                   >
                     {matchedIcon}

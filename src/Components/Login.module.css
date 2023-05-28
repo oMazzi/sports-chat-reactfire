@@ -35,7 +35,7 @@
   padding-bottom: .25rem;
 }
 
-input {
+.input {
   width: 100%;
   margin-bottom: .5rem;
   border-radius: .2rem;
@@ -47,7 +47,7 @@ input {
   line-height: 2rem;
 }
 
-input:hover {
+.input:hover {
   box-shadow: 0 0 3px 3px #3E884A;
   background-color: #fff;
 }

@@ -26,8 +26,10 @@ const Header = () => {
               <Link to={'/chat'} className={styles.navLinkText}>
                 Chat
               </Link>
-              <Link to={'/myaccount'} className={styles.navLinkText}>
-                {user.displayName ? user.displayName : 'My account'}
+              <Link to={'/chat'} className={styles.navLinkText}>
+                {user.displayName
+                  ? `Hello ${user.displayName}!`
+                  : 'Hello again!'}
               </Link>
             </>
           ) : (

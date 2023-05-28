@@ -13,10 +13,10 @@ const Home = () => {
       <div className={styles.principalText}>
         <h1 className={styles.title}>Connecting sport lovers</h1>
         <p className={styles.text}>
-          A place where you are free to talk about your favorite sport, being a
-          team fan or not. Where you can meet new people and spend time with
-          your friends. A place that makes it easy to meet and connect you with
-          other sport lovers.
+          A place where you are free to talk about your favorite sport
+          anonymously, being a team fan or not. Where you can meet new people
+          and spend time with your friends. A place that makes it easy to meet
+          and connect you with other sport lovers.
         </p>
       </div>
       <img src={Background} alt="Background" className={styles.background} />

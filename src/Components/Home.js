@@ -16,7 +16,7 @@ const Home = () => {
           A place where you are free to talk about your favorite sport
           anonymously, being a team fan or not. Where you can meet new people
           and spend time with your friends. A place that makes it easy to
-          connect you with other sport lovers and be free to talk.
+          connect you with other sport lovers.
         </p>
       </div>
       <img src={Background} alt="Background" className={styles.background} />

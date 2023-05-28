@@ -20,7 +20,7 @@ const App = () => {
         <Header />
         <main className={styles.main}>
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/sports-chat/" element={<Home />} />
             <Route path="/login/*" element={<Login />} />
             <Route path="/chat/*" element={<Chat />} />
             <Route path="/myaccount/*" element={<MyAccount />} />

@@ -124,7 +124,12 @@ const Chat = () => {
       <div className={styles.flexContainer}>
         <h1 className={styles.title}>Chat</h1>
       </div>
-      <button onClick={handleMenuMobile} className={styles.buttonMobile}>
+      <button
+        onClick={handleMenuMobile}
+        className={`${styles.buttonMobile} ${
+          isMenuActive ? '' : `${styles.rotateMenu}`
+        }`}
+      >
         <GrMenu />
       </button>
       <div className={styles.gridContainer}>

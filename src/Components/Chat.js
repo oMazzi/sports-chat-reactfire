@@ -19,6 +19,7 @@ import { MdOutlineSportsHandball as Handball } from 'react-icons/md'; //handball
 import { MdSportsHockey as Hockey } from 'react-icons/md'; //hockey
 import { CiBasketball as Basketball } from 'react-icons/ci'; //basketball
 import { CiFootball as Football } from 'react-icons/ci'; //football
+import { GrMenu } from 'react-icons/gr';
 
 const Chat = () => {
   const [titles, setTitles] = React.useState([]);
@@ -26,6 +27,7 @@ const Chat = () => {
   const [selectedSportId, setSelectedSportId] = React.useState(null);
   const [newMessage, setNewMessage] = React.useState('');
   const [user] = useAuthState(auth);
+  const [isMenuActive, setIsMenuActive] = React.useState(true);
 
   const iconsNames = [
     { name: 'Soccer', icon: Soccer },
@@ -113,14 +115,25 @@ const Chat = () => {
     }
   }, [selectedSportId, messages]);
 
+  const handleMenuMobile = () => {
+    setIsMenuActive(!isMenuActive);
+  };
+
   return (
     <>
       <div className={styles.flexContainer}>
         <h1 className={styles.title}>Chat</h1>
       </div>
+      <button onClick={handleMenuMobile} className={styles.buttonMobile}>
+        <GrMenu />
+      </button>
       <div className={styles.gridContainer}>
         <section>
-          <aside>
+          <div
+            className={`${styles.aside} ${
+              !isMenuActive ? `${styles.menuMobileHidden}` : ''
+            }`}
+          >
             {titles &&
               sortedTitles.map((title) => {
                 const matchedIcon = iconsNames.map((icon) => {
@@ -140,9 +153,9 @@ const Chat = () => {
                   </Link>
                 );
               })}
-          </aside>
+          </div>
         </section>
-        <main>
+        <main className={`${!isMenuActive ? `${styles.takeMenuMobile}` : ''}`}>
           <form onSubmit={handleSubmitNewMessage} className={styles.formSend}>
             <input
               className={styles.input}
@@ -150,7 +163,9 @@ const Chat = () => {
               placeholder="Send your Message"
               onChange={(e) => setNewMessage(e.target.value)}
             />
-            <button className={styles.button}>Send</button>
+            <button className={`${styles.button} ${styles.buttonSend}`}>
+              Send
+            </button>
           </form>
           <section className={styles.scrollBox}>
             <div className={styles.divMessageSent}>

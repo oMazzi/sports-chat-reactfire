@@ -7,15 +7,22 @@ import LogOut from './LogOut';
 
 const Header = () => {
   const [user] = useAuthState(auth);
+  const firstName = () => {
+    if (user.displayName) {
+      const name = user.displayName.split(' ')[0];
+      return name;
+    }
+    return null;
+  };
 
   const handleClick = () => {
-    window.location.href = 'signup';
+    window.location.href = '/signup';
   };
 
   return (
     <header className={styles.headerContainer}>
       <nav className={styles.navContainer}>
-        <div>
+        <div className={styles.navContainerLogo}>
           <Link
             className={styles.logo}
             to="/sports-chat/"
@@ -31,9 +38,7 @@ const Header = () => {
                 Chat
               </Link>
               <Link to={'/chat'} className={styles.navLinkText}>
-                {user.displayName
-                  ? `Hello ${user.displayName}!`
-                  : 'Hello again!'}
+                {firstName() ? `Hello ${firstName()}!` : 'Hello again!'}
               </Link>
             </>
           ) : (

@@ -33,7 +33,7 @@
   justify-items: flex-start;
 }
 
-.gridContainer aside {
+.gridContainer .aside {
   background-color: #BCB8B8;
   border: none;
   border-radius: .2rem;
@@ -43,9 +43,14 @@
   grid-template-columns: 1fr;
   grid-auto-rows: 2rem;
   padding: 1rem;
+  display: grid;
 }
 
-.gridContainer aside a {
+.gridContainer section .menuMobileHidden{
+  display: none;
+}
+
+.gridContainer .aside a {
   text-transform: uppercase;
   font-weight: 500;
   padding-left: 3rem;
@@ -61,11 +66,11 @@
   grid-row: span 2;
 }
 
-aside a {
+.aside a {
   display: flex;
 }
 
-aside a svg {
+.aside a svg {
   margin-right: 1.5rem;
 }
 
@@ -82,6 +87,22 @@ aside a svg {
   cursor: pointer;
   align-self: flex-end;
   transition: all .3s;
+}
+
+.buttonMobile {
+  color: #fff;
+  background-color: #3E884A;
+  border: none;
+  border-radius: .2rem;
+  position: relative;
+  font-size: 1rem;
+  font-weight: 300;
+  padding: .5rem .5rem .5rem .5rem;
+  box-shadow: 3px 3px 2px rgba(0,0,0,.25);
+  cursor: pointer;
+  align-self: flex-end;
+  transition: all .3s;
+  display: none;
 }
 
 .input {
@@ -142,5 +163,30 @@ aside a svg {
 	border-top: 0;
 	margin-top: -0.25em;
 	margin-left: -0.5em;
+}
+
+@media (max-width: 480px)  {
+  .gridContainer {
+    grid-template-rows: 1fr 2fr;
+    grid-template-columns: 1fr;
+  }
+  .gridContainer .aside {
+    grid-row: 1;
+    width: 100%;
+  }
+  .gridContainer main {
+    grid-row: 2/3;
+    width: 100%;
+  }
+ 
+  .buttonMobile {
+      display: block;
+  }
+  .gridContainer .takeMenuMobile {
+    grid-row: 1/3;
+  }
+  .buttonSend {
+    padding: 0.5rem 0.75rem 0.5rem 0.75rem;
+  }
 }
 

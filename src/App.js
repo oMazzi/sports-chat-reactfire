@@ -21,10 +21,10 @@ const App = () => {
         <main className={styles.main}>
           <Routes>
             <Route path="/sports-chat/" element={<Home />} />
-            <Route path="/login/*" element={<Login />} />
-            <Route path="/chat/*" element={<Chat />} />
-            <Route path="/myaccount/*" element={<MyAccount />} />
-            <Route path="/signup/*" element={<SignUp />} />
+            <Route path="/sports-chat/login/*" element={<Login />} />
+            <Route path="/sports-chat/chat/*" element={<Chat />} />
+            <Route path="/sports-chat/myaccount/*" element={<MyAccount />} />
+            <Route path="/sports-chat/signup/*" element={<SignUp />} />
           </Routes>
         </main>
       </BrowserRouter>

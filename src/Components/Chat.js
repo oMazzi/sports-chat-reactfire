@@ -73,11 +73,11 @@ const Chat = () => {
 
   const handleSubmitNewMessage = async (e) => {
     e.preventDefault();
-    if (newMessage === '') {
-      alert('Please enter a valid message');
-      return;
-    } else if (!selectedSportId) {
+    if (!selectedSportId) {
       alert('Please select a channel');
+      return;
+    } else if (newMessage === '') {
+      alert('Please enter a valid message');
       return;
     } else {
       const { uid } = auth.currentUser;

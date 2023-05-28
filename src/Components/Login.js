@@ -14,7 +14,7 @@ const Login = () => {
 
   React.useEffect(() => {
     if (user) {
-      window.location.href = '/sports-chat/chat';
+      window.location.href = '/chat';
     }
   }, [user]);
 
@@ -25,7 +25,7 @@ const Login = () => {
       signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
           // const user = userCredential.user;
-          window.location.href = '/sports-chat/chat';
+          window.location.href = '/chat';
         })
         .catch((error) => {
           setError(error.message);
@@ -58,14 +58,14 @@ const Login = () => {
           onChange={(e) => setPassword(e.target.value)}
         />
         {error ? <p className={styles.error}>Invalid Credentials</p> : null}
-        <Link to={'/sports-chat/forgot'} className={styles.linkForgot}>
+        <Link to={'/forgot'} className={styles.linkForgot}>
           Forgot password?
         </Link>
         <button className={styles.button} onClick={handleLogin}>
           Sign in
         </button>
         <nav className={styles.navForgot}>
-          Not sign up yet?<Link to={'/sports-chat/signup'}> Sign up!</Link>
+          Not sign up yet?<Link to={'/signup'}> Sign up!</Link>
         </nav>
         <SignInGoogle />
       </form>

@@ -5,7 +5,7 @@ import styles from './Home.module.css';
 
 const Home = () => {
   const handleClick = () => {
-    window.location.href = '/sports-chat/login';
+    window.location.href = '/login';
   };
 
   return (

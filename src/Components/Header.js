@@ -9,7 +9,7 @@ const Header = () => {
   const [user] = useAuthState(auth);
 
   const handleClick = () => {
-    window.location.href = '/sports-chat/signup';
+    window.location.href = 'signup';
   };
 
   return (
@@ -18,7 +18,7 @@ const Header = () => {
         <div>
           <Link
             className={styles.logo}
-            to="/sports-chat"
+            to="/sports-chat/"
             aria-label="Sports Chat Home"
           >
             Sports Chat
@@ -27,17 +27,17 @@ const Header = () => {
         <div className={styles.navLinks}>
           {user ? (
             <>
-              <Link to={'/sports-chat/chat'} className={styles.navLinkText}>
+              <Link to={'/chat'} className={styles.navLinkText}>
                 Chat
               </Link>
-              <Link to={'/sports-chat/chat'} className={styles.navLinkText}>
+              <Link to={'/chat'} className={styles.navLinkText}>
                 {user.displayName
                   ? `Hello ${user.displayName}!`
                   : 'Hello again!'}
               </Link>
             </>
           ) : (
-            <Link to={'/sports-chat/login'} className={styles.navLinkText}>
+            <Link to={'/login'} className={styles.navLinkText}>
               Sign in
             </Link>
           )}

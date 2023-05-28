@@ -17,7 +17,7 @@ const SignUp = () => {
 
   React.useEffect(() => {
     if (user) {
-      window.location.href = '/sports-chat/chat';
+      window.location.href = '/chat';
     }
   }, [user]);
   console.log(user);
@@ -30,7 +30,7 @@ const SignUp = () => {
       const auth = getAuth();
       createUserWithEmailAndPassword(auth, email, password)
         .then(() => {
-          window.location.href = '/sports-chat/chat';
+          window.location.href = '/chat';
         })
         .catch((error) => {
           setError(error.message);
@@ -102,7 +102,7 @@ const SignUp = () => {
           Sign up
         </button>
         <nav className={styles.navForgot}>
-          Already sign up?<Link to={'/sports-chat/login'}> Sign in!</Link>
+          Already sign up?<Link to={'/login'}> Sign in!</Link>
         </nav>
         <SignInGoogle />
       </form>

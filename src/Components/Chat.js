@@ -1,6 +1,5 @@
 import React from 'react';
 import styles from './Chat.module.css';
-import { auth, database } from '../firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import {
   collection,
@@ -20,14 +19,21 @@ import { MdSportsHockey as Hockey } from 'react-icons/md'; //hockey
 import { CiBasketball as Basketball } from 'react-icons/ci'; //basketball
 import { CiFootball as Football } from 'react-icons/ci'; //football
 import { GrMenu } from 'react-icons/gr';
+import { useAuth, useDatabase, useFirestoreCollectionData } from 'reactfire';
 
 const Chat = () => {
+  const auth = useAuth();
+  const database = useDatabase();
+  const [user] = useAuthState(auth);
+
   const [titles, setTitles] = React.useState([]);
   const [messages, setMessages] = React.useState([]);
   const [selectedSportId, setSelectedSportId] = React.useState(null);
   const [newMessage, setNewMessage] = React.useState('');
-  const [user] = useAuthState(auth);
   const [isMenuActive, setIsMenuActive] = React.useState(true);
+
+  const titlesRef = collection(database, 'Sports');
+  const { data } = useFirestoreCollectionData(titlesRef);
 
   const iconsNames = [
     { name: 'Soccer', icon: Soccer },
@@ -38,7 +44,8 @@ const Chat = () => {
     { name: 'Basketball', icon: Basketball },
     { name: 'Football', icon: Football },
   ];
-  const sortedTitles = titles.sort((a, b) => a.title.localeCompare(b.title));
+  const sortedTitles =
+    titles && titles.sort((a, b) => a.title.localeCompare(b.title));
 
   React.useEffect(() => {
     const timeout = setTimeout(() => {
@@ -50,16 +57,8 @@ const Chat = () => {
   }, [user]);
 
   React.useEffect(() => {
-    const q = query(collection(database, 'Sports'));
-    const unsubscribe = onSnapshot(q, (querySnapshot) => {
-      let titles = [];
-      querySnapshot.forEach((doc) => {
-        titles.push({ ...doc.data(), id: doc.id });
-      });
-      setTitles(titles);
-    });
-    return () => unsubscribe();
-  }, []);
+    setTitles(data);
+  }, [data]);
 
   const handleSportClick = async (sportId) => {
     const subcollectionSnapshot = await getDocs(
@@ -82,7 +81,7 @@ const Chat = () => {
       alert('Please enter a valid message');
       return;
     } else {
-      const { uid } = auth.currentUser;
+      const { uid } = auth.currentUser || {};
       await addDoc(
         collection(database, 'Sports', selectedSportId, 'childItems'),
         {
@@ -113,7 +112,7 @@ const Chat = () => {
 
       return () => clearTimeout(timeout);
     }
-  }, [selectedSportId, messages]);
+  }, [selectedSportId, messages, database]);
 
   const handleMenuMobile = () => {
     setIsMenuActive(!isMenuActive);
@@ -166,9 +165,13 @@ const Chat = () => {
               className={styles.input}
               type="text"
               placeholder="Send your Message"
+              value={newMessage}
               onChange={(e) => setNewMessage(e.target.value)}
             />
-            <button className={`${styles.button} ${styles.buttonSend}`}>
+            <button
+              className={`${styles.button} ${styles.buttonSend}`}
+              type="submit"
+            >
               Send
             </button>
           </form>

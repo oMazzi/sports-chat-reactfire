@@ -2,17 +2,21 @@ import React from 'react';
 import styles from './Login.module.css';
 import SignInGoogle from './SignInGoogle';
 import { Link } from 'react-router-dom';
-import { auth } from '../firebase';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import {
+  useAuthState,
+  useSignInWithEmailAndPassword,
+} from 'react-firebase-hooks/auth';
+import { useAuth } from 'reactfire';
 import { RiEyeLine, RiEyeOffLine } from 'react-icons/ri';
 
 const Login = () => {
+  const auth = useAuth();
   const [user] = useAuthState(auth);
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [error, setError] = React.useState('');
   const [showPassword, setShowPassword] = React.useState(false);
+  const [signInWithEmailAndPassword] = useSignInWithEmailAndPassword(auth);
 
   React.useEffect(() => {
     if (user) {
@@ -23,10 +27,8 @@ const Login = () => {
   const handleLogin = (e) => {
     e.preventDefault();
     if (email && password) {
-      const auth = getAuth();
-      signInWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-          // const user = userCredential.user;
+      signInWithEmailAndPassword(email, password)
+        .then(() => {
           window.location.href = '/chat';
         })
         .catch((error) => {

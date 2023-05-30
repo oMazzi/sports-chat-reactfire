@@ -2,13 +2,15 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Header.module.css';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { auth } from '../firebase';
 import LogOut from './LogOut';
+import { useAuth } from 'reactfire';
 
 const Header = () => {
+  const auth = useAuth();
   const [user] = useAuthState(auth);
+
   const firstName = () => {
-    if (user.displayName) {
+    if (user?.displayName) {
       const name = user.displayName.split(' ')[0];
       return name;
     }
@@ -37,9 +39,9 @@ const Header = () => {
               <Link to={'/chat'} className={styles.navLinkText}>
                 Chat
               </Link>
-              <Link to={'/chat'} className={styles.navLinkText}>
+              <span to={'/chat'} className={styles.navLinkText}>
                 {firstName() ? `Hello ${firstName()}!` : 'Hello again!'}
-              </Link>
+              </span>
             </>
           ) : (
             <Link to={'/login'} className={styles.navLinkText}>

@@ -1,13 +1,14 @@
 import React from 'react';
 import styles from './Login.module.css';
 import SignInGoogle from './SignInGoogle';
-import { auth } from '../firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
+import { useAuth } from 'reactfire';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { RiEyeLine, RiEyeOffLine } from 'react-icons/ri';
 import { Link } from 'react-router-dom';
 
 const SignUp = () => {
+  const auth = useAuth();
   const [user] = useAuthState(auth);
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
@@ -27,7 +28,6 @@ const SignUp = () => {
     if (password !== confirmPassword) {
       setError('Passwords do not match');
     } else if (email && password) {
-      const auth = getAuth();
       createUserWithEmailAndPassword(auth, email, password)
         .then(() => {
           window.location.href = '/chat';

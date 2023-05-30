@@ -1,10 +1,14 @@
 import React from 'react';
 import styles from './Header.module.css';
-import { auth } from '../firebase';
+import { useSignOut } from 'react-firebase-hooks/auth';
+import { useAuth } from 'reactfire';
 
 const LogOut = () => {
+  const auth = useAuth();
+  const [signOut] = useSignOut(auth);
+
   const handleClick = () => {
-    auth.signOut();
+    signOut();
     window.location.href = '/sports-chat/';
   };
 

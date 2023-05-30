@@ -1,7 +1,8 @@
-import { GoogleAuthProvider, signInWithRedirect } from 'firebase/auth';
 import React from 'react';
-import GoogleButton from 'react-google-button';
 import { useAuth } from 'reactfire';
+import { GoogleAuthProvider, signInWithRedirect } from 'firebase/auth';
+
+import GoogleButton from 'react-google-button';
 
 const SignIn = () => {
   const auth = useAuth();

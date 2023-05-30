@@ -1,6 +1,6 @@
 import React from 'react';
+
 import Background from '../Assets/Component-2.svg';
-// import { ReactComponent as Background } from '../Assets/Component 1.svg';
 import styles from './Home.module.css';
 
 const Home = () => {

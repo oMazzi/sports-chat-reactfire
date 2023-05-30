@@ -1,9 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import styles from './Header.module.css';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import LogOut from './LogOut';
 import { useAuth } from 'reactfire';
+import { useAuthState } from 'react-firebase-hooks/auth';
+
+import styles from './Header.module.css';
+import LogOut from './LogOut';
 
 const Header = () => {
   const auth = useAuth();

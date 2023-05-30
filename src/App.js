@@ -1,27 +1,17 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import {
-  AuthProvider,
-  DatabaseProvider,
-  useFirebaseApp,
-  /*FirebaseAppProvider,*/
-  /*useFirestore,*/
-  /*useFirestoreDocData,*/
-  /*useDatabase,*/
-  /*useFirebaseApp,*/
-} from 'reactfire';
+import { AuthProvider, DatabaseProvider, useFirebaseApp } from 'reactfire';
+import { getFirestore } from 'firebase/firestore';
+import { getAuth } from 'firebase/auth';
+
+import styles from './App.module.css';
 import Header from './Components/Header';
 import Home from './Components/Home';
 import Login from './Components/Login';
 import SignUp from './Components/SignUp';
-import styles from './App.module.css';
 import Chat from './Components/Chat';
-import { /*doc,*/ getFirestore } from 'firebase/firestore';
-import { getAuth } from 'firebase/auth';
 
 const App = () => {
-  // const firestoreRef = doc(useFirestore(), 'Sports');
-  // const { status, data } = useFirestoreDocData(firestoreRef);
   const firebaseApp = useFirebaseApp();
   const auth = getAuth(firebaseApp);
   const database = getFirestore(firebaseApp);

@@ -1,12 +1,13 @@
 import React from 'react';
-import styles from './Login.module.css';
-import SignInGoogle from './SignInGoogle';
 import { Link } from 'react-router-dom';
+import { useAuth } from 'reactfire';
 import {
   useAuthState,
   useSignInWithEmailAndPassword,
 } from 'react-firebase-hooks/auth';
-import { useAuth } from 'reactfire';
+
+import styles from './Login.module.css';
+import SignInGoogle from './SignInGoogle';
 import { RiEyeLine, RiEyeOffLine } from 'react-icons/ri';
 
 const Login = () => {

@@ -1,7 +1,8 @@
 import React from 'react';
-import styles from './Header.module.css';
-import { useSignOut } from 'react-firebase-hooks/auth';
 import { useAuth } from 'reactfire';
+import { useSignOut } from 'react-firebase-hooks/auth';
+
+import styles from './Header.module.css';
 
 const LogOut = () => {
   const auth = useAuth();

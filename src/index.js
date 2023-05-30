@@ -1,6 +1,7 @@
 import React from 'react';
-import { FirebaseAppProvider } from 'reactfire';
 import ReactDOM from 'react-dom/client';
+import { FirebaseAppProvider } from 'reactfire';
+
 import './index.css';
 import App from './App';
 

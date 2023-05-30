@@ -1,15 +1,9 @@
 import React from 'react';
-import styles from './Chat.module.css';
+import { useAuth, useDatabase, useFirestoreCollectionData } from 'reactfire';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import {
-  collection,
-  onSnapshot,
-  query,
-  getDocs,
-  addDoc,
-  serverTimestamp,
-  orderBy,
-} from 'firebase/firestore';
+import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
+
+import styles from './Chat.module.css';
 import { Link } from 'react-router-dom';
 import { MdSportsSoccer as Soccer } from 'react-icons/md'; //soccer
 import { BiBaseball as Baseball } from 'react-icons/bi'; //baseball
@@ -19,7 +13,6 @@ import { MdSportsHockey as Hockey } from 'react-icons/md'; //hockey
 import { CiBasketball as Basketball } from 'react-icons/ci'; //basketball
 import { CiFootball as Football } from 'react-icons/ci'; //football
 import { GrMenu } from 'react-icons/gr';
-import { useAuth, useDatabase, useFirestoreCollectionData } from 'reactfire';
 
 const Chat = () => {
   const auth = useAuth();
@@ -33,7 +26,12 @@ const Chat = () => {
   const [isMenuActive, setIsMenuActive] = React.useState(true);
 
   const titlesRef = collection(database, 'Sports');
-  const { data } = useFirestoreCollectionData(titlesRef);
+  const { data: sportsList } = useFirestoreCollectionData(titlesRef);
+
+  const messagesRef = selectedSportId
+    ? collection(database, 'Sports', selectedSportId, 'childItems')
+    : collection(database, 'Sports', 'o5BaZ1PuxJBLUf2SvINB', 'childItems');
+  const { data: messageList } = useFirestoreCollectionData(messagesRef);
 
   const iconsNames = [
     { name: 'Soccer', icon: Soccer },
@@ -57,62 +55,32 @@ const Chat = () => {
   }, [user]);
 
   React.useEffect(() => {
-    setTitles(data);
-  }, [data]);
+    setTitles(sportsList);
+  }, [sportsList]);
 
-  const handleSportClick = async (sportId) => {
-    const subcollectionSnapshot = await getDocs(
-      collection(database, 'Sports', sportId, 'childItems'),
-    );
-    let messages = [];
-    subcollectionSnapshot.forEach((doc) => {
-      messages.push({ ...doc.data(), id: doc.id });
-    });
-    setMessages(messages);
+  const handleSportClick = (sportId) => {
     setSelectedSportId(sportId);
   };
+
+  React.useEffect(() => {
+    setMessages(messageList);
+  }, [messageList]);
 
   const handleSubmitNewMessage = async (e) => {
     e.preventDefault();
     if (!selectedSportId) {
       alert('Please select a channel');
-      return;
     } else if (newMessage === '') {
       alert('Please enter a valid message');
-      return;
     } else {
-      const { uid } = auth.currentUser || {};
-      await addDoc(
-        collection(database, 'Sports', selectedSportId, 'childItems'),
-        {
-          message: newMessage,
-          timestamp: serverTimestamp(),
-          uid,
-        },
-      );
+      await addDoc(messagesRef, {
+        message: newMessage,
+        timestamp: serverTimestamp(),
+        uid: user.uid,
+      });
+      setNewMessage('');
     }
   };
-
-  React.useEffect(() => {
-    if (selectedSportId) {
-      const timeout = setTimeout(() => {
-        const q = query(
-          collection(database, 'Sports', selectedSportId, 'childItems'),
-          orderBy('timestamp', 'desc'),
-        );
-        const unsubscribe = onSnapshot(q, (querySnapshot) => {
-          let messages = [];
-          querySnapshot.forEach((doc) => {
-            messages.push({ ...doc.data(), id: doc.id });
-          });
-          setMessages(messages);
-        });
-        return () => unsubscribe;
-      }, 1500);
-
-      return () => clearTimeout(timeout);
-    }
-  }, [selectedSportId, messages, database]);
 
   const handleMenuMobile = () => {
     setIsMenuActive(!isMenuActive);
@@ -148,9 +116,9 @@ const Chat = () => {
                 });
                 return (
                   <Link
-                    onClick={() => handleSportClick(title.id)}
+                    onClick={() => handleSportClick(title.NO_ID_FIELD)}
                     to={`/chat/${title.title}`}
-                    key={title.title}
+                    key={title.NO_ID_FIELD}
                   >
                     {matchedIcon}
                     <p>{title.title}</p>
@@ -178,9 +146,9 @@ const Chat = () => {
           <section className={styles.scrollBox}>
             <div className={styles.divMessageSent}>
               {messages &&
-                messages.map((message) => {
+                messages.map((message, index) => {
                   return (
-                    <p key={message.id} className={styles.messageSent}>
+                    <p key={index} className={styles.messageSent}>
                       {message.message}
                     </p>
                   );

@@ -28,7 +28,7 @@ const Header = () => {
         <div className={styles.navContainerLogo}>
           <Link
             className={styles.logo}
-            to="/sports-chat/"
+            to="/sports-chat-reactfire/"
             aria-label="Sports Chat Home"
           >
             Sports Chat

@@ -21,7 +21,6 @@ const SignUp = () => {
       window.location.href = '/chat';
     }
   }, [user]);
-  console.log(user);
 
   const handleSignUp = (e) => {
     e.preventDefault();

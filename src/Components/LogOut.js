@@ -10,7 +10,7 @@ const LogOut = () => {
 
   const handleClick = () => {
     signOut();
-    window.location.href = '/sports-chat/';
+    window.location.href = '/sports-chat-reactfire/';
   };
 
   return (

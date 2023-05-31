@@ -25,18 +25,34 @@ const Login = () => {
     }
   }, [user]);
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    if (email && password) {
-      signInWithEmailAndPassword(email, password)
-        .then(() => {
-          window.location.href = '/chat';
-        })
-        .catch((error) => {
-          setError(error.message);
-        });
+    if (!(email && password)) {
+      setError('Please fill all the fields');
+      return;
     }
+    signInWithEmailAndPassword(email, password)
+      .then((response) => {
+        console.log(response);
+        // if (response === undefined) {
+        //   setError('Invalid credentials');
+        // }
+      })
+      .catch(() => {
+        setError('Invalid credentials');
+      });
   };
+
+  // const handleLogin = async (e) => {
+  //   e.preventDefault();
+  //   if (!(email && password)) setError('Please fill all the fields');
+  //   try {
+  //     const response = await signInWithEmailAndPassword(email, password);
+  //     if (response === undefined) setError('Invalid credentials');
+  //   } catch {
+  //     setError('Invalid credentials');
+  //   }
+  // };
 
   const togglePasswordVisibility = (e) => {
     e.preventDefault();
@@ -75,7 +91,7 @@ const Login = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        {error ? <p className={styles.error}>Invalid Credentials</p> : null}
+        {error ? <p className={styles.error}>{error}</p> : null}
         <button className={styles.button} onClick={handleLogin}>
           Sign in
         </button>

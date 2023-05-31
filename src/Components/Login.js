@@ -27,32 +27,14 @@ const Login = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    if (!(email && password)) {
-      setError('Please fill all the fields');
-      return;
+    if (!(email && password)) setError('Please fill all the fields');
+    try {
+      const response = await signInWithEmailAndPassword(email, password);
+      if (response === undefined) setError('Invalid credentials');
+    } catch {
+      setError('Invalid credentials');
     }
-    signInWithEmailAndPassword(email, password)
-      .then((response) => {
-        console.log(response);
-        // if (response === undefined) {
-        //   setError('Invalid credentials');
-        // }
-      })
-      .catch(() => {
-        setError('Invalid credentials');
-      });
   };
-
-  // const handleLogin = async (e) => {
-  //   e.preventDefault();
-  //   if (!(email && password)) setError('Please fill all the fields');
-  //   try {
-  //     const response = await signInWithEmailAndPassword(email, password);
-  //     if (response === undefined) setError('Invalid credentials');
-  //   } catch {
-  //     setError('Invalid credentials');
-  //   }
-  // };
 
   const togglePasswordVisibility = (e) => {
     e.preventDefault();

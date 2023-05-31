@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/sports-chat/static/css/main.c6cb8a5b.css",
-    "main.js": "/sports-chat/static/js/main.6388f45d.js",
-    "static/media/Component-2.svg": "/sports-chat/static/media/Component-2.a73891d29d7c549de1c3efcb7161ecfb.svg",
-    "index.html": "/sports-chat/index.html",
-    "main.c6cb8a5b.css.map": "/sports-chat/static/css/main.c6cb8a5b.css.map",
-    "main.6388f45d.js.map": "/sports-chat/static/js/main.6388f45d.js.map"
+    "main.css": "/sports-chat-reactfire/static/css/main.c6cb8a5b.css",
+    "main.js": "/sports-chat-reactfire/static/js/main.703e0107.js",
+    "static/media/Component-2.svg": "/sports-chat-reactfire/static/media/Component-2.a73891d29d7c549de1c3efcb7161ecfb.svg",
+    "index.html": "/sports-chat-reactfire/index.html",
+    "main.c6cb8a5b.css.map": "/sports-chat-reactfire/static/css/main.c6cb8a5b.css.map",
+    "main.703e0107.js.map": "/sports-chat-reactfire/static/js/main.703e0107.js.map"
   },
   "entrypoints": [
     "static/css/main.c6cb8a5b.css",
-    "static/js/main.6388f45d.js"
+    "static/js/main.703e0107.js"
   ]
 }
